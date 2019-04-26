@@ -45,7 +45,7 @@
 			e.preventDefault();
 
 			var name = $(this).attr('id');
-			var primary_address = $('.woocommerce-Addresses .u-column2.woocommerce-Address address');
+			var primary_address = $('.thc-account-content .woocommerce-Address address');
 			var alt_address = $(this).parent().siblings('address');
 
 			// Swap HTML values for address and label

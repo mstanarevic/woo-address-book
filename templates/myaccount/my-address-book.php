@@ -67,7 +67,6 @@ if ( ! $type ) : ?>
 				);
 
 				$formatted_address = WC()->countries->get_formatted_address( $address );
-
 				if ( $formatted_address ) :
 					?>
 

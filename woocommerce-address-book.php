@@ -108,6 +108,21 @@ if ( ! is_plugin_active( $woo_path ) && ! is_plugin_active_for_network( $woo_pat
 
 			add_action( 'woocommerce_shipping_fields', array( $this, 'replace_address_key' ), 1001, 2 );
 
+			// add title to my addresses
+            add_filter( 'woocommerce_my_account_my_address_formatted_address' , array( $this, 'my_account_address_formatted_addresses' ), 20, 3 );
+
+            // customize default addresses
+            add_filter(  'woocommerce_default_address_fields', array( $this, 'custom_default_address_fields' ), 20, 1 );
+
+            // remove title from billing
+            add_filter(  'woocommerce_billing_fields', array( $this, 'custom_billing_fields' ), 20, 1 );
+
+            // add the replacement value
+            add_filter( 'woocommerce_formatted_address_replacements', array( $this, 'custom_formatted_address_replacements'), 10, 2);
+
+		    // add title to the format - NOT SURE IS THIS OKAY?
+            add_filter( 'woocommerce_localisation_address_formats', array( $this, 'custom_localisation_formats'), 10,
+                1);
 		} // end constructor
 
 		/**
@@ -227,6 +242,79 @@ if ( ! is_plugin_active( $woo_path ) && ! is_plugin_active_for_network( $woo_pat
 
 			<?php
 		}
+
+		/*
+		 * Add title to all localisation formats
+		 *
+		 * @param $formats
+		 *
+		 */
+		public function custom_localisation_formats( $formats )
+        {
+            foreach ( $formats as $key => &$format ) {
+                // put a break and then the phone after each format.
+                $format =  "{title}\n".$format;
+            }
+            return $formats;
+        }
+
+		/*
+		 * Customer replacements
+		 *
+		 * @param $replacements
+		 * @param $args
+		 */
+		public function custom_formatted_address_replacements( $replacements, $args )
+        {
+            $replacements['{title}'] = $args['title'];
+            return $replacements;
+        }
+
+		/*
+		 * Remove title from billing fields
+		 *
+		 * @param $fields
+		 *
+		 * @return array
+		 */
+		public function custom_billing_fields( $fields ) {
+            unset($fields['billing_title']);
+            return $fields;
+        }
+
+		/*
+		 * Add title as default field
+		 *
+		 * @param $fields
+		 *
+		 * @return array
+		 */
+		public function custom_default_address_fields( $fields ) {
+            // Only on account pages
+            if( ! is_account_page() ) return $fields;
+
+            $fields['title'] = $this->get_shipping_title_field();
+            return $fields;
+        }
+
+		/*
+		 * Change default formatted addresses
+		 * - Add shipping title
+		 *
+		 * @param $address
+		 * @param $customer_id
+		 * @param $address_type
+		 *
+		 * @return array
+		 */
+        public function my_account_address_formatted_addresses( $address, $customer_id, $address_type ) {
+            if($address_type != 'billing') {
+              if($shipping_title = $this->get_shipping_title($customer_id, $address_type)) {
+                  $address = array_merge($address, ['title' => $shipping_title]);
+              }
+            }
+            return $address;
+        }
 
 		/**
 		 * Returns the next available shipping address name.
@@ -479,8 +567,10 @@ if ( ! is_plugin_active( $woo_path ) && ! is_plugin_active_for_network( $woo_pat
 
 			// Get the set shipping fields, including any custom values.
 			$address_keys = array_keys( $address_fields );
+			// add title
+			array_unshift($address_keys, 'shipping_title');
 
-			$address_book = array();
+            $address_book = array();
 
 			if ( ! empty( $address_names ) ) {
 
@@ -583,7 +673,7 @@ if ( ! is_plugin_active( $woo_path ) && ! is_plugin_active_for_network( $woo_pat
 			$show_state = ( isset( $address[ $name . '_state' ] ) ? true : false );
 
 			$label  = $address[ $name . '_first_name' ] . ' ' . $address[ $name . '_last_name' ];
-			$label .= ( isset( $address[ $name . '_address_1' ] ) ? ', ' . $address[ $name . '_address_1' ] : '' );
+            $label .= ( isset( $address[ $name . '_address_1' ] ) ? ', ' . $address[ $name . '_address_1' ] : '' );
 			$label .= ( isset( $address[ $name . '_city' ] ) ? ', ' . $address[ $name . '_city' ] : '' );
 			$label .= ( isset( $address[ $name . '_state' ] ) ? ', ' . $address[ $name . '_state' ] : '' );
 
@@ -801,7 +891,6 @@ if ( ! is_plugin_active( $woo_path ) && ! is_plugin_active_for_network( $woo_pat
 
 				$user_id       = get_current_user_id();
 				$address_names = $this->get_address_names( $user_id );
-
 				// If a version of the address name exists with a slash, use it. Otherwise, trim the slash.
 				// Previous versions of this plugin was including the slash in the address name.
 				// While not causing problems, it should not have happened in the first place.
@@ -819,10 +908,40 @@ if ( ! is_plugin_active( $woo_path ) && ! is_plugin_active_for_network( $woo_pat
 					$address_fields[ $newkey ] = $address_fields[ $key ];
 					unset( $address_fields[ $key ] );
 				}
-			}
-
-			return $address_fields;
+            } else {
+			    // default address
+			    $name = 'shipping';
+            }
+            // add title new field
+            //$address_fields[$name . '_title'] = $this->get_shipping_title_field();
+            return $address_fields;
 		}
+
+		/*
+		 * Get shipping title by shipping field name
+		 *
+		 * @param $user_id
+		 * @param $name
+		 *
+		 * @return bool|string
+		 */
+		public function get_shipping_title($user_id, $name ) {
+            $shipping_title = get_user_meta( $user_id, $name.'_title', true );
+            return $shipping_title ?: false;
+        }
+
+        /*
+         * Get shipping title field array
+         *
+         * @return array
+         */
+        public function get_shipping_title_field() {
+		  return [
+              'label' => __('Shipping title', 'wc-address-book'),
+              'required' => true,
+              'priority' => 1,
+          ];
+        }
 
 	} // end class
 
