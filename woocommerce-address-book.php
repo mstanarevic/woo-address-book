@@ -266,7 +266,8 @@ if ( ! is_plugin_active( $woo_path ) && ! is_plugin_active_for_network( $woo_pat
 		 */
 		public function custom_formatted_address_replacements( $replacements, $args )
         {
-            $replacements['{title}'] = $args['title'];
+            if(isset($args['title']))
+                $replacements['{title}'] = $args['title'];
             return $replacements;
         }
 
