@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7e5d0fe9-40c7-445b-aae9-cf7c2aa98d6a" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/myaccount/my-address-book.php" beforeDir="false" afterPath="$PROJECT_DIR$/templates/myaccount/my-address-book.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/woocommerce-address-book.php" beforeDir="false" afterPath="$PROJECT_DIR$/woocommerce-address-book.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -15,8 +17,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/woocommerce-address-book.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="155">
-              <caret line="253" column="54" lean-forward="true" selection-start-line="253" selection-start-column="54" selection-end-line="253" selection-end-column="54" />
+            <state relative-caret-position="562">
+              <caret line="699" column="46" selection-start-line="699" selection-start-column="40" selection-end-line="699" selection-end-column="46" />
             </state>
           </provider>
         </entry>
@@ -24,8 +26,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/myaccount/my-address-book.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="945">
-              <caret line="51" column="24" selection-start-line="51" selection-start-column="16" selection-end-line="51" selection-end-column="24" />
+            <state relative-caret-position="651">
+              <caret line="37" column="16" lean-forward="true" selection-start-line="37" selection-start-column="16" selection-end-line="37" selection-end-column="16" />
             </state>
           </provider>
         </entry>
@@ -34,36 +36,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>my-addres</find>
-      <find>wc_address_book_page</find>
-      <find>custom_billing_fields</find>
-      <find>woocommerce_checkout_fields</find>
-      <find>shipping_address_select_field</find>
-      <find>custom_default_address_fields</find>
-      <find>billing</find>
-      <find>wc_</find>
-      <find>get_address</find>
-      <find>get_address_bo</find>
-      <find>preg</find>
-      <find>add</find>
-      <find>add_</find>
-      <find>replace_address_key</find>
       <find>save_addre</find>
       <find>update_address</find>
       <find>set_add</find>
       <find>set_new_address_name</find>
       <find>update_user_meta</find>
       <find>$new_address_name</find>
-      <find>save_address_names</find>
       <find>get_addre</find>
       <find>update_address_names</find>
       <find>'WC_Address_Book'</find>
       <find>get_address_book</find>
-      <find>set_new</find>
       <find>static</find>
-      <find>get_address_names</find>
-      <find>delete</find>
       <find>wc_address_book_delete</find>
+      <find>{title}</find>
+      <find>get_address_names</find>
+      <find>set_new</find>
+      <find>$shipping_address</find>
+      <find>custom_formatted_address_replacements</find>
+      <find>woocommerce_billing_fields</find>
+      <find>custom_billing</find>
+      <find>apply</find>
+      <find>woocommerce_checkout_fields</find>
+      <find>shipping_address_select_field</find>
+      <find>woocommerce_default_address_fields</find>
+      <find>custom_default_address_fields</find>
+      <find>standardize_field_ids</find>
+      <find>custom_billing_fields</find>
+      <find>delete</find>
+      <find>add_shipping</find>
+      <find>make_primary</find>
+      <find>save_address_names</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -72,6 +74,7 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+        <option value="$PROJECT_DIR$/templates/myaccount/my-address-book.php" />
         <option value="$PROJECT_DIR$/woocommerce-address-book.php" />
       </list>
     </option>
@@ -86,9 +89,9 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="1920" />
-    <option name="y" value="-548" />
+    <option name="y" value="-559" />
     <option name="width" value="1080" />
     <option name="height" value="1897" />
   </component>
@@ -97,7 +100,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -120,9 +122,11 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -153,17 +157,19 @@
       <workItem from="1556314976912" duration="7912000" />
       <workItem from="1556383247222" duration="6883000" />
       <workItem from="1556412648787" duration="2676000" />
+      <workItem from="1557273547663" duration="440000" />
+      <workItem from="1557427920755" duration="6829000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="17471000" />
+    <option name="totallyTimeSpent" value="24740000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1920" y="-548" width="1080" height="1897" extended-state="0" />
+    <frame x="1920" y="-559" width="1080" height="1897" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.2495183" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25433525" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -188,17 +194,17 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/woocommerce-address-book.php">
+    <entry file="file://$PROJECT_DIR$/templates/myaccount/my-address-book.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="155">
-          <caret line="253" column="54" lean-forward="true" selection-start-line="253" selection-start-column="54" selection-end-line="253" selection-end-column="54" />
+        <state relative-caret-position="651">
+          <caret line="37" column="16" lean-forward="true" selection-start-line="37" selection-start-column="16" selection-end-line="37" selection-end-column="16" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/myaccount/my-address-book.php">
+    <entry file="file://$PROJECT_DIR$/woocommerce-address-book.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="945">
-          <caret line="51" column="24" selection-start-line="51" selection-start-column="16" selection-end-line="51" selection-end-column="24" />
+        <state relative-caret-position="562">
+          <caret line="699" column="46" selection-start-line="699" selection-start-column="40" selection-end-line="699" selection-end-column="46" />
         </state>
       </provider>
     </entry>

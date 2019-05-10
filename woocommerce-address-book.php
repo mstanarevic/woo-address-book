@@ -115,7 +115,7 @@ if ( ! is_plugin_active( $woo_path ) && ! is_plugin_active_for_network( $woo_pat
             add_filter(  'woocommerce_default_address_fields', array( $this, 'custom_default_address_fields' ), 20, 1 );
 
             // remove title from billing
-            add_filter(  'woocommerce_billing_fields', array( $this, 'custom_billing_fields' ), 20, 1 );
+            add_filter(  'woocommerce_billing_fields', array( $this, 'custom_billing_fields' ));
 
             // add the replacement value
             add_filter( 'woocommerce_formatted_address_replacements', array( $this, 'custom_formatted_address_replacements'), 10, 2);
@@ -268,6 +268,9 @@ if ( ! is_plugin_active( $woo_path ) && ! is_plugin_active_for_network( $woo_pat
         {
             if(isset($args['title']))
                 $replacements['{title}'] = $args['title'];
+            else {
+                unset($replacements['{title}']);
+            }
             return $replacements;
         }
 
