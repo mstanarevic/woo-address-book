@@ -21,10 +21,10 @@ if ( ! $type ) : ?>
 
 	<?php
 
-	$shipping_address = get_user_meta( $customer_id, 'shipping_address_1', true );
-
+//	$shipping_address =get_user_meta( $customer_id, 'shipping_address_1', true );
+    $shipping_addresses = $wc_address_book::get_address_names($customer_id);
 	// Only display if primary addresses are set and not on an edit page.
-	if ( ! empty( $shipping_address ) ) :
+	if ( ! empty( $shipping_addresses ) ) :
 		?>
 
 		<hr />
