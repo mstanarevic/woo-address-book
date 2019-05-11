@@ -21,7 +21,6 @@ if ( ! $type ) : ?>
 
 	<?php
 
-//	$shipping_address =get_user_meta( $customer_id, 'shipping_address_1', true );
     $shipping_addresses = $wc_address_book::get_address_names($customer_id);
 	// Only display if primary addresses are set and not on an edit page.
 	if ( ! empty( $shipping_addresses ) ) :
@@ -89,8 +88,9 @@ if ( ! $type ) : ?>
 	<?php endif; ?>
 
 	<?php
+    $shipping_addresses = $wc_address_book::get_address_names($customer_id);
 	// Add link/button to the my accounts page for adding addresses.
-	if ( ! empty( get_user_meta( $customer_id, 'shipping_address_1' ) ) ) {
+    if ( ! empty( $shipping_addresses ) ) {
 		$wc_address_book->add_additional_address_button();
 	}
 	?>
