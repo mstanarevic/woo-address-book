@@ -783,11 +783,9 @@ if ( ! is_plugin_active( $woo_path ) && ! is_plugin_active_for_network( $woo_pat
 
 		/**
 		 * Used for deleting addresses from the my-account page.
-		 *
-		 * @param string $address_name The name of a specific address in the address book.
 		 * @since 1.0.0
 		 */
-		public function wc_address_book_delete( $address_name, $type ) {
+		public function wc_address_book_delete( ) {
 
 			$address_name  = $_POST['name'];
 			$type = $_POST['type'];
