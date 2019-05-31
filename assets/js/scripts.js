@@ -48,7 +48,14 @@
 
 			var name = $(this).attr('id');
 			var type = $(this).data('type');
-			var primary_address = $('.thc-account-content .woocommerce-Address address');
+
+
+			if(type === 'billing') {
+				var primary_address = $('.thc-account-content .woocommerce-Address address:first');
+			} else {
+				var primary_address = $('.thc-account-content .woocommerce-Address address:last');
+			}
+			
 			var alt_address = $(this).parent().siblings('address');
 
 			// Swap HTML values for address and label
