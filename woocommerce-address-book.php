@@ -508,7 +508,7 @@ if ( ! is_plugin_active( $woo_path ) && ! is_plugin_active_for_network( $woo_pat
          *
          * @return string
          */
-        private static function get_address_book_type_from_name( $name )
+        public static function get_address_book_type_from_name( $name )
         {
             $available_types = ['shipping', 'billing'];
 
