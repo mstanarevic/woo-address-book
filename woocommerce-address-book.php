@@ -865,13 +865,7 @@ if ( ! is_plugin_active( $woo_path ) && ! is_plugin_active_for_network( $woo_pat
 
 			$customer_id        = get_current_user_id();
             $address_book = self::get_address_book($type, $customer_id);
-
-            if($type === 'billing') {
-                $countries = $woocommerce->countries->get_billing_countries();
-            } else {
-                $countries = $woocommerce->countries->get_shipping_countries();
-            }
-
+            $countries = $woocommerce->countries->get_shipping_countries();
 			$response = array();
 
 			// Get address field values.
