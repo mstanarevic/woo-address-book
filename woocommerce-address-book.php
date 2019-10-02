@@ -116,12 +116,11 @@ if ( ! is_plugin_active( $woo_path ) && ! is_plugin_active_for_network( $woo_pat
             // customize default addresses
             add_filter(  'woocommerce_default_address_fields', array( $this, 'custom_default_address_fields' ), 20, 1 );
 
+		    // add title to the format - NOT SURE IS THIS OKAY?
+            add_filter( 'woocommerce_localisation_address_formats', array( $this, 'custom_localisation_formats'), 10, 1);
+
             // add the replacement value
             add_filter( 'woocommerce_formatted_address_replacements', array( $this, 'custom_formatted_address_replacements'), 10, 2);
-
-		    // add title to the format - NOT SURE IS THIS OKAY?
-            add_filter( 'woocommerce_localisation_address_formats', array( $this, 'custom_localisation_formats'), 10,
-                1);
 		} // end constructor
 
 		/**
@@ -290,18 +289,19 @@ if ( ! is_plugin_active( $woo_path ) && ! is_plugin_active_for_network( $woo_pat
             return $formats;
         }
 
-		/*
-		 * Customer replacements
-		 *
-		 * @param $replacements
-		 * @param $args
-		 */
-		public function custom_formatted_address_replacements( $replacements, $args )
+        /*
+         * Customer replacements
+         *
+         * @param $replacements
+         * @param $args
+         */
+        public function custom_formatted_address_replacements( $replacements, $args )
         {
-            if(isset($args['title']))
+            if(isset($args['title']) && !empty($args['title'])) {
                 $replacements['{title}'] = $args['title'];
+            }
             else {
-                unset($replacements['{title}']);
+                $replacements['{title}'] = 'No title';
             }
             return $replacements;
         }
